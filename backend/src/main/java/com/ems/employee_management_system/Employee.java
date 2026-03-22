@@ -31,4 +31,16 @@ public class Employee {
 
     @Column(name = "email_id")
     private String emailId;
+
+    @Column(name = "salary")
+    private Double salary;
+
+    @Column(name = "dob")
+    private String dob;
+
+    @Column(name = "location")
+    private String location;
+
+    @Column(name = "mobile_number")
+    private String mobileNumber;
 }

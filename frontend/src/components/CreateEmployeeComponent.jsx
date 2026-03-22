@@ -13,6 +13,10 @@ const CreateEmployeeComponent = () => {
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [emailId, setEmailId] = useState('');
+    const [salary, setSalary] = useState('');
+    const [dob, setDob] = useState('');
+    const [location, setLocation] = useState('');
+    const [mobileNumber, setMobileNumber] = useState('');
 
     // If there is an 'id' in the URL, it means we are UPDATING an existing employee.
     useEffect(() => {
@@ -23,6 +27,10 @@ const CreateEmployeeComponent = () => {
                 setFirstName(employee.firstName);
                 setLastName(employee.lastName);
                 setEmailId(employee.emailId);
+                setSalary(employee.salary || '');
+                setDob(employee.dob || '');
+                setLocation(employee.location || '');
+                setMobileNumber(employee.mobileNumber || '');
             });
         }
     }, [id]); // This runs whenever the 'id' changes.
@@ -30,7 +38,7 @@ const CreateEmployeeComponent = () => {
     // Function that runs when the "Save" button is clicked.
     const saveOrUpdateEmployee = (e) => {
         e.preventDefault(); // Prevents the page from refreshing.
-        let employee = { firstName, lastName, emailId }; // Create an object from the form data.
+        let employee = { firstName, lastName, emailId, salary, dob, location, mobileNumber }; // Create an object from the form data.
 
         if (id) {
             // Update existing employee
@@ -82,6 +90,26 @@ const CreateEmployeeComponent = () => {
                                     <label> Email Id: </label>
                                     <input placeholder="Email Address" name="emailId" className="form-control"
                                         value={emailId} onChange={(e) => setEmailId(e.target.value)} />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label> Mobile Number: </label>
+                                    <input placeholder="Mobile Number" name="mobileNumber" className="form-control"
+                                        value={mobileNumber} onChange={(e) => setMobileNumber(e.target.value)} />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label> Location: </label>
+                                    <input placeholder="Location" name="location" className="form-control"
+                                        value={location} onChange={(e) => setLocation(e.target.value)} />
+                                </div>
+                                <div className="form-group mb-2">
+                                    <label> Date of Birth: </label>
+                                    <input type="date" name="dob" className="form-control"
+                                        value={dob} onChange={(e) => setDob(e.target.value)} />
+                                </div>
+                                <div className="form-group mb-3">
+                                    <label> Salary: </label>
+                                    <input type="number" placeholder="Salary" name="salary" className="form-control"
+                                        value={salary} onChange={(e) => setSalary(e.target.value)} />
                                 </div>
 
                                 <button className="btn btn-success" onClick={saveOrUpdateEmployee}>Save</button>

@@ -33,6 +33,11 @@ class EmployeeService {
     deleteEmployee(employeeId) {
         return axios.delete(EMPLOYEE_API_BASE_URL + '/' + employeeId);
     }
+
+    // New Login method for Admin
+    login(username, password) {
+        return axios.post("http://localhost:8080/api/v1/login", { username, password });
+    }
 }
 
 // We export a 'new' instance of this class so we can use its methods elsewhere.

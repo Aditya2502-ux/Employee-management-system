@@ -41,6 +41,10 @@ public class EmployeeService {
         employee.setFirstName(employeeDetails.getFirstName());
         employee.setLastName(employeeDetails.getLastName());
         employee.setEmailId(employeeDetails.getEmailId());
+        employee.setSalary(employeeDetails.getSalary());
+        employee.setDob(employeeDetails.getDob());
+        employee.setLocation(employeeDetails.getLocation());
+        employee.setMobileNumber(employeeDetails.getMobileNumber());
         
         // Save the updated employee back to the database
         return employeeRepository.save(employee);
