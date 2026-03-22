@@ -1,0 +1,28 @@
+# Java
+target/
+*.class
+*.jar
+*.war
+*.ear
+
+# Node.js
+node_modules/
+dist/
+dist-ssr
+*.local
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+*.DS_Store
+
+# Spring Boot
+.mvn/
+help.md
+log/
+
+# OS
+Thumbs.db
+Desktop.ini
