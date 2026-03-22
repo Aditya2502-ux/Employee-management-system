@@ -14,7 +14,7 @@ import java.util.Map;
  * (React).
  * It uses the EmployeeService to perform operations.
  */
-@CrossOrigin(origins = "http://localhost:3000") // Allows our React app (running on port 3000) to talk to this backend.
+@CrossOrigin(originPatterns = {"http://localhost:*", "http://127.0.0.1:*"}) // React dev server (any local port, e.g. 3000 or 3001).
 @RestController // Tells Spring that this class is a REST API.
 @RequestMapping("/api/v1/") // Base URL for all endpoints in this controller.
 public class EmployeeController {

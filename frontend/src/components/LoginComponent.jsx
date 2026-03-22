@@ -10,7 +10,7 @@ const LoginComponent = () => {
 
     const handleLogin = (e) => {
         e.preventDefault();
-        EmployeeService.login(username, password)
+        EmployeeService.login(username.trim(), password)
             .then(res => {
                 // Save login status to localStorage
                 localStorage.setItem("isAdmin", "true");
@@ -18,7 +18,19 @@ const LoginComponent = () => {
                 window.location.reload(); // Refresh to update header
             })
             .catch(err => {
-                setError("Invalid username or password! (Hint: use admin/admin123)");
+                const status = err.response?.status;
+                if (status === 404) {
+                    setError('The server on port 8080 does not expose login (404). Stop the old backend and start a fresh one: in the backend folder run mvn spring-boot:run, then try again. Use admin / admin123.');
+                    return;
+                }
+                const msg = err.response?.data?.message;
+                if (msg) {
+                    setError(`${msg} (Username: admin, Password: admin123)`);
+                } else if (err.code === 'ERR_NETWORK') {
+                    setError('Cannot reach the API at http://localhost:8080. Start the backend (mvn spring-boot:run) and ensure port 8080 is free.');
+                } else {
+                    setError('Login failed. Check username/password (admin / admin123) or browser console for CORS/network errors.');
+                }
             });
     };
 

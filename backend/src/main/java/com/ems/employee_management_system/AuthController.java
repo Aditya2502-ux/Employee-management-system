@@ -10,7 +10,7 @@ import java.util.Map;
  * In a real app, we would use Spring Security, but for now, 
  * we will use a simple "Hardcoded" admin check.
  */
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(originPatterns = {"http://localhost:*", "http://127.0.0.1:*"})
 @RestController
 @RequestMapping("/api/v1/")
 public class AuthController {
